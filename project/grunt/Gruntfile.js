@@ -28,19 +28,67 @@ module.exports = function (grunt) {
       },
       css: {
         src: ["../css/*.css"],
-        dest: "../../htdocs/css/style.css",
+        dest: "dist/style.css",
       },
       js: {
-        src: ["bower_components/jquery/dist/jquery.js", "../js/*.js"],
-        dest: "../../htdocs/js/script.js",
+        src: [/*"bower_components/jquery/dist/jquery.js",*/ "../js/*.js"],
+        dest: "dist/script.js",
       },
     },
     //---------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------CSS Min-------------------------------------------------------------------------
+    cssmin: {
+      options: {
+        mergeIntoShorthands: false,
+        roundingPrecision: -1,
+      },
+      target: {
+        files: {
+          "../../htdocs/css/style.css": ["dist/style.css"],
+        },
+      },
+    },
+    //---------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------Js Min-------------------------------------------------------------------------
+    uglify: {
+      minify: {
+        options: {
+          sourceMap: true,
+        },
+        files: {
+          "../../htdocs/js/script.min.js": ["dist/script.js"],
+        },
+      },
+    },
+    //---------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------- Bower Copy Task -----------------------------------------------------------------------
+    copy: {
+      jquery: {
+        files: [
+          // includes files within path and its sub-directories
+          {
+            expand: true,
+            flatten: true,
+            filter: "isFile",
+            src: ["bower_components/jquery/dist/*"],
+            dest: "../../htdocs/js/jquery/",
+          },
+        ],
+      },
+    },
+    //--------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------- Watch Task -----------------------------------------------------------------------
     watch: {
       css: {
-        files: ["../css/*.css", "../js/*.js"],
-        tasks: ["concat"],
+        files: ["../css/*.css"],
+        tasks: ["concat:css", "cssmin"],
+        options: {
+          spawn: false,
+        },
+      },
+      js: {
+        files: ["../js/*.js"],
+        tasks: ["concat:js", "uglify"],
         options: {
           spawn: false,
         },
@@ -49,8 +97,16 @@ module.exports = function (grunt) {
     // -------------------------------------------------------------------------------------------------------------------------------------
   });
   // -------------------------------------------------------------------------------------------------------------------------------------
-
+  grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.registerTask("default", ["concat", "watch"]);
+  grunt.loadNpmTasks("grunt-contrib-cssmin");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.registerTask("default", [
+    "copy",
+    "concat",
+    "cssmin",
+    "uglify",
+    "watch",
+  ]);
 };
