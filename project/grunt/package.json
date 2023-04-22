@@ -10,5 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "grunt": "^1.6.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-watch": "^1.1.0"
   }
 }
