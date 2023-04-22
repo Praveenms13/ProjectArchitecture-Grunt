@@ -27,15 +27,19 @@ module.exports = function (grunt) {
         banner: "/* Developed By Praveen on " + datetime + "*/\n",
       },
       css: {
-        src: ["../css/1.css", "../css/2.css", "../css/3.css"],
+        src: ["../css/*.css"],
         dest: "../../htdocs/css/style.css",
+      },
+      js: {
+        src: ["bower_components/jquery/dist/jquery.js", "../js/*.js"],
+        dest: "../../htdocs/js/script.js",
       },
     },
     //---------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------- Watch Task -----------------------------------------------------------------------
     watch: {
       css: {
-        files: ["../css/*.css"],
+        files: ["../css/*.css", "../js/*.js"],
         tasks: ["concat"],
         options: {
           spawn: false,
@@ -45,15 +49,8 @@ module.exports = function (grunt) {
     // -------------------------------------------------------------------------------------------------------------------------------------
   });
   // -------------------------------------------------------------------------------------------------------------------------------------
-  grunt.registerTask("task1", function () {
-    console.log("I am Grunt_1, Running !!");
-  });
-
-  grunt.registerTask("task2", function () {
-    console.log("I am Grunt_2, Running !!");
-  });
 
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.registerTask("default", ["task1", "task2", "concat", "watch"]);
+  grunt.registerTask("default", ["concat", "watch"]);
 };
