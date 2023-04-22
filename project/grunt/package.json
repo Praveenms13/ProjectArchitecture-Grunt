@@ -16,7 +16,9 @@
   "devDependencies": {
     "grunt-contrib-concat": "^2.1.0",
     "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-obfuscator": "^8.0.0",
     "grunt-contrib-uglify": "^5.2.2",
-    "grunt-contrib-watch": "^1.1.0"
+    "grunt-contrib-watch": "^1.1.0",
+    "javascript-obfuscator": "^4.0.2"
   }
 }

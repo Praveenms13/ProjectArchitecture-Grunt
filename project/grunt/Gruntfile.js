@@ -76,7 +76,25 @@ module.exports = function (grunt) {
         ],
       },
     },
-    //--------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------Obfuscator Task-----------------------------------------------------------------------------
+    obfuscator: {
+      options: {
+        banner: "// obfuscated with grunt-contrib-obfuscator.\n",
+        debugProtection: true,
+        debugProtectionInterval: true,
+        domainLock: ["grunt.praveenms.site"],
+      },
+      task1: {
+        options: {
+          // options for each sub task
+        },
+        files: {
+          "../../htdocs/js/script.ob.js": ["dist/script.js"],
+        },
+      },
+    },
+    //----------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------- Watch Task -----------------------------------------------------------------------
     watch: {
       css: {
@@ -88,7 +106,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ["../js/*.js"],
-        tasks: ["concat:js", "uglify"],
+        tasks: ["concat:js", "uglify", "obfuscator"],
         options: {
           spawn: false,
         },
@@ -102,11 +120,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-contrib-obfuscator");
   grunt.registerTask("default", [
     "copy",
     "concat",
     "cssmin",
     "uglify",
+    "obfuscator",
     "watch",
   ]);
 };
