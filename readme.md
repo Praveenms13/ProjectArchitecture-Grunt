@@ -6,7 +6,7 @@ This project utilizes GruntJS to streamline the development process and improve 
 
 ## Deployed
 
-Sample project id deployed At https://grunt.praveenms.site, Subdomain of www.praveenms.site.
+Sample project is deployed At https://grunt.praveenms.site, Subdomain of www.praveenms.site.
 
 ## Developed by, 
 
@@ -46,6 +46,6 @@ grunt concat:css
 This will keep a track of a css file in you working directory(Project not in htdocs after updating the css just enter the above command in terminal to merge and update the css)
 
 ```
-grunt concat:css
+grunt concat:js 
 ```
 This will keep a track of a js file in you working directory(Project not in htdocs after updating the js just enter the above command in terminal to merge and update the js)
