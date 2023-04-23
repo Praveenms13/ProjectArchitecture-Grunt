@@ -4,6 +4,10 @@
 
 This project utilizes GruntJS to streamline the development process and improve project architecture. With GruntJS, the following features have been implemented:
 
+## Deployed
+
+Sample project id deployed At https://grunt.praveenms.site, Subdomain of www.praveenms.site.
+
 ## Developed by, 
 
 - [M S Praveen Kumar](https://www.praveenms.site)
