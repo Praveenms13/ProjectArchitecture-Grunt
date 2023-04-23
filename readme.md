@@ -30,7 +30,7 @@ To build and deploy the project, run the following command in your terminal:
 ```
 grunt
 ```
-This will initiate the build process and deploy the project to the appropriate location. Then by just entering the single command ```grunt``` all the process will start to exucute such as ```grunt watch, grunt css:concat, grunt js:concat``` all together.
+This will initiate the build process and deploy the project to the appropriate location. Then by just entering the single command ```grunt``` all the process will start to exucute such as ```grunt watch, grunt concat:css, grunt concat:js``` all together.
 
 To watch for changes in your project and automatically build and deploy, run the following command:
 
