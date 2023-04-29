@@ -1,4 +1,4 @@
-/* Developed By Praveen on Last Sync: 27/4/2023 @ 18:7:28*/
+/* Developed By Praveen on Last Sync: 29/4/2023 @ 4:16:17*/
 alert('hello da');
 console.log("This is main.js file!!");
 function changeH1() {
