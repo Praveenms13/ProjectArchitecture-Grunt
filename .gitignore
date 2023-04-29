@@ -1,4 +1,4 @@
 
-project/grunt/node_modules/*
+project/grunt/node_modules/
 
-project/grunt/bower_components/*
+project/grunt/bower_components/
