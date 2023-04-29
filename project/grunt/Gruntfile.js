@@ -34,6 +34,10 @@ module.exports = function (grunt) {
         src: [/*"bower_components/jquery/dist/jquery.js",*/ "../js/*.js"],
         dest: "dist/script.js",
       },
+      scss: {
+        src: ["../scss/*.scss"],
+        dest: "dist/style.scss",
+      },
     },
     //---------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------CSS Min-------------------------------------------------------------------------
@@ -42,9 +46,26 @@ module.exports = function (grunt) {
         mergeIntoShorthands: false,
         roundingPrecision: -1,
       },
-      target: {
+      css: {
         files: {
           "../../htdocs/css/style.css": ["dist/style.css"],
+        },
+      },
+      scss: {
+        files: {
+          "../../htdocs/css/app.css": ["../../htdocs/css/app.css"],
+        }
+      },
+    },
+    //---------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------SCSS Task-------------------------------------------------------------------------
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          '../../htdocs/css/app.css': 'dist/style.scss',
         },
       },
     },
@@ -99,7 +120,7 @@ module.exports = function (grunt) {
     watch: {
       css: {
         files: ["../css/*.css"],
-        tasks: ["concat:css", "cssmin"],
+        tasks: ["concat:css", "cssmin:css"],
         options: {
           spawn: false,
         },
@@ -111,24 +132,32 @@ module.exports = function (grunt) {
           spawn: false,
         },
       },
+      scss: {
+        files: ["../scss/*.scss"],
+        tasks: ["concat:scss", "sass", "cssmin:scss"],
+        options: {
+          spawn: false,
+        },
+      }
     },
     // -------------------------------------------------------------------------------------------------------------------------------------
   });
   // -------------------------------------------------------------------------------------------------------------------------------------
+  grunt.loadNpmTasks("grunt-contrib-obfuscator");
   grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-uglify");
-  grunt.loadNpmTasks("grunt-contrib-obfuscator");
-  grunt.registerTask("css", ["concat:css", "cssmin"]);
-  grunt.registerTask("js", ["concat:js", "uglify", "obfuscator"]);
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.registerTask("default", [
     "copy",
     "concat",
-    "cssmin",
+    "cssmin:css",
+    "sass",
+    "cssmin:scss",
     "uglify",
     "obfuscator",
     "watch",
   ]);
-};
+}; 

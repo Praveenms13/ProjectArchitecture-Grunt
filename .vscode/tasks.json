@@ -2,12 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "npm",
-      "script": "grunt",
-      "path": "project/grunt",
-      "problemMatcher": [],
-      "label": "npm: grunt - project/grunt",
-      "detail": "cd /home/mspraveenkumar77/htdocs/gruntShow/project/grunt && grunt"
+      "label": "Grunt Start",
+      "type": "shell",
+      "command": "cd /home/mspraveenkumar77/htdocs/gruntShow/project/grunt && grunt"
     },
     {
       "label": "Apache Error Log",
